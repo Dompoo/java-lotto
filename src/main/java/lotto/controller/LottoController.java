@@ -4,6 +4,7 @@ import lotto.common.RetryHandler;
 import lotto.common.dto.LottoMatchResult;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAccount;
+import lotto.domain.LottoNumber;
 import lotto.domain.TargetLotto;
 import lotto.io.input.InputHandler;
 import lotto.io.output.OutputHandler;
@@ -34,13 +35,19 @@ public class LottoController {
 		List<Lotto> lottos = Lotto.craete(lottoAccount, numberPicker);
 		outputHandler.handleLottos(lottos);
 		
-		TargetLotto targetLotto = retryHandler.tryUntilSuccess(() -> {
+		Lotto targetNumbers = retryHandler.tryUntilSuccess(() -> {
 			List<Integer> numbers = inputHandler.handleTargetNumbers();
-			int bonusNumber = inputHandler.handleBonusNumber();
-			return TargetLotto.from(numbers, bonusNumber);
+			return Lotto.from(numbers);
 		});
 		
+		LottoNumber bonusNumber = retryHandler.tryUntilSuccess(() -> {
+			int number = inputHandler.handleBonusNumber();
+			return LottoNumber.from(number);
+		});
+		
+		TargetLotto targetLotto = TargetLotto.from(targetNumbers, bonusNumber);
 		LottoMatchResult result = targetLotto.matchPrize(lottos);
+		
 		outputHandler.handleWinning(result.winningDetails());
 		outputHandler.handleStatics(lottoAccount.getMoney(), result.totalIncome());
 	}

@@ -9,25 +9,25 @@ import java.util.Objects;
 
 public class TargetLotto {
 	
-	private final Lotto number;
+	private final Lotto numbers;
 	private final LottoNumber bonusNumber;
 	
-	public TargetLotto(Lotto number, LottoNumber bonusNumber) {
-		Objects.requireNonNull(number);
+	public TargetLotto(Lotto numbers, LottoNumber bonusNumber) {
+		Objects.requireNonNull(numbers);
 		Objects.requireNonNull(bonusNumber);
-		this.number = number;
+		this.numbers = numbers;
 		this.bonusNumber = bonusNumber;
 	}
 	
-	public static TargetLotto from(List<Integer> numbers, int bonusNumber) {
-		return new TargetLotto(Lotto.from(numbers), LottoNumber.from(bonusNumber));
+	public static TargetLotto from(Lotto numbers, LottoNumber bonusNumber) {
+		return new TargetLotto(numbers, bonusNumber);
 	}
 	
 	public LottoMatchResult matchPrize(List<Lotto> lottos) {
 		EnumMap<LottoPrize, Integer> lottoPrizes = new EnumMap<>(LottoPrize.class);
 		initailizeLottoPrizes(lottoPrizes);
 		for (Lotto lotto : lottos) {
-			LottoPrize lottoPrize = LottoPrize.calculatePrize(lotto.match(number), lotto.match(bonusNumber));
+			LottoPrize lottoPrize = LottoPrize.calculatePrize(lotto.match(numbers), lotto.match(bonusNumber));
 			lottoPrizes.put(lottoPrize, lottoPrizes.get(lottoPrize) + 1);
 		}
 		BigDecimal totalIncome = calculateTotalIncome(lottoPrizes);
