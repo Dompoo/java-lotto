@@ -24,7 +24,7 @@ public enum LottoPrize {
 	
 	public static LottoPrize calculatePrize(int numberMatch, boolean bonusMatch) {
 		return Arrays.stream(LottoPrize.values())
-				.filter(lottoPrize -> lottoPrize.numberMatch >= numberMatch)
+				.filter(lottoPrize -> lottoPrize.numberMatch <= numberMatch)
 				.filter(lottoPrize -> {
 					if (bonusMatch) {
 						return lottoPrize.bonusMatch;
