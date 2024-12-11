@@ -32,4 +32,11 @@ public class InputHandler {
 		inputValidator.validateTargetNumbers(input);
 		return inputParser.parseTargetNumbers(input);
 	}
+	
+	public int handleBonusNumber() {
+		writer.write("보너스 번호를 입력해 주세요.\n");
+		String input = reader.readLine();
+		inputValidator.validateBonusNumber(input);
+		return inputParser.parseBonusNumber(input);
+	}
 }

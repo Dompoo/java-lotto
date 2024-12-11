@@ -28,4 +28,12 @@ public class InputValidator {
 			throw CustomExceptions.INVALID_TARGET_NUMBERS_FORMAT.get();
 		}
 	}
+	
+	public void validateBonusNumber(String input) {
+		try {
+			Integer.parseInt(input);
+		} catch (IllegalArgumentException e) {
+			throw CustomExceptions.INVALID_BONUS_NUMBER_FORMAT.get();
+		}
+	}
 }

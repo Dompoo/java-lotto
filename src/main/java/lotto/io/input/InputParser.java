@@ -15,4 +15,8 @@ public class InputParser {
 				.map(Integer::parseInt)
 				.toList();
 	}
+	
+	public int parseBonusNumber(String input) {
+		return Integer.parseInt(input);
+	}
 }
