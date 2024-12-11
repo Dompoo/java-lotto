@@ -6,6 +6,10 @@ public enum CustomExceptions {
 			"구입금액 입력 포맷이 잘못되었습니다.",
 			IllegalArgumentException.class
 	),
+	INVALID_TARGET_NUMBERS_FORMAT(
+			"당첨 번호 입력 포맷이 잘못되었습니다.",
+			IllegalArgumentException.class
+	),
 	INVALID_LOTTO_NUMBER_RANGE(
 			"로또 번호는 %d~%d 사이여야 합니다.",
 			IllegalArgumentException.class
