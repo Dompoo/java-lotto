@@ -22,4 +22,8 @@ public class LottoAccount {
 	public int getMoneyDividedBy(int divide) {
 		return money / divide;
 	}
+	
+	public int getMoney() {
+		return money;
+	}
 }

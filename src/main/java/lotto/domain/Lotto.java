@@ -10,6 +10,7 @@ import java.util.StringJoiner;
 
 public class Lotto {
     
+    private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_NUMBER_COUNT = 6;
     
     private final List<LottoNumber> numbers;
@@ -33,7 +34,8 @@ public class Lotto {
         return new Lotto(LottoNumber.fromList(numbers));
     }
 
-    public static List<Lotto> craete(int count, NumberPicker numberPicker) {
+    public static List<Lotto> craete(LottoAccount lottoAccount, NumberPicker numberPicker) {
+        int count = lottoAccount.getMoneyDividedBy(LOTTO_PRICE);
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<LottoNumber> numbers = LottoNumber.createUnique(LOTTO_NUMBER_COUNT, numberPicker);

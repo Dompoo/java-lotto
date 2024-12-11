@@ -30,6 +30,10 @@ public enum CustomExceptions {
 			"금액은 %d원 단위여야 합니다.",
 			IllegalArgumentException.class
 	),
+	OVER_MAX_RETRY_ATTEPMT(
+			"최대 재시도 회수를 초과했습니다.",
+			IllegalStateException.class
+	),
 	;
 	
 	private final String message;
