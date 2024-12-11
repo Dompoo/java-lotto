@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.common.dto.LottoMatchResult;
+import lotto.common.exception.CustomExceptions;
 
 import java.math.BigDecimal;
 import java.util.EnumMap;
@@ -15,8 +16,15 @@ public class TargetLotto {
 	public TargetLotto(Lotto numbers, LottoNumber bonusNumber) {
 		Objects.requireNonNull(numbers);
 		Objects.requireNonNull(bonusNumber);
+		validate(numbers, bonusNumber);
 		this.numbers = numbers;
 		this.bonusNumber = bonusNumber;
+	}
+	
+	private void validate(Lotto numbers, LottoNumber bonusNumber) {
+		if (numbers.match(bonusNumber)) {
+			throw CustomExceptions.DUPLICATED_LOTTO_NUMBER_AND_BONUS_NUMBER.get();
+		}
 	}
 	
 	public static TargetLotto from(Lotto numbers, LottoNumber bonusNumber) {

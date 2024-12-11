@@ -40,12 +40,11 @@ public class LottoController {
 			return Lotto.from(numbers);
 		});
 		
-		LottoNumber bonusNumber = retryHandler.tryUntilSuccess(() -> {
+		TargetLotto targetLotto = retryHandler.tryUntilSuccess(() -> {
 			int number = inputHandler.handleBonusNumber();
-			return LottoNumber.from(number);
+			return TargetLotto.from(targetNumbers, LottoNumber.from(number));
 		});
 		
-		TargetLotto targetLotto = TargetLotto.from(targetNumbers, bonusNumber);
 		LottoMatchResult result = targetLotto.matchPrize(lottos);
 		
 		outputHandler.handleWinning(result.winningDetails());

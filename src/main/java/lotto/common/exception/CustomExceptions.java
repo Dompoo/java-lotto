@@ -22,6 +22,10 @@ public enum CustomExceptions {
 			"로또 번호는 %d개여야 합니다.",
 			IllegalArgumentException.class
 	),
+	DUPLICATED_LOTTO_NUMBER_AND_BONUS_NUMBER(
+			"로또 번호와 보너스 번호는 중복될 수 없습니다.",
+			IllegalArgumentException.class
+	),
 	DUPLICATED_LOTTO_NUMBER(
 			"로또 번호는 중복될 수 없습니다.",
 			IllegalArgumentException.class
