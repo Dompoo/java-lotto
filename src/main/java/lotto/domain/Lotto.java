@@ -62,6 +62,7 @@ public class Lotto {
     public String toString() {
         StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
         numbers.stream()
+                .sorted()
                 .map(LottoNumber::getStringValue)
                 .forEach(stringJoiner::add);
         return stringJoiner.toString();

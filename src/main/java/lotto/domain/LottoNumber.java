@@ -6,7 +6,7 @@ import lotto.service.numberPicker.NumberPicker;
 import java.util.List;
 import java.util.Objects;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
 	
 	private static final int MIN_NUMBER = 1;
 	private static final int MAX_NUMBER = 45;
@@ -55,5 +55,10 @@ public class LottoNumber {
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(number);
+	}
+	
+	@Override
+	public int compareTo(LottoNumber o) {
+		return this.number - o.number;
 	}
 }
