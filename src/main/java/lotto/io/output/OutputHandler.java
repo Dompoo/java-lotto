@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoPrize;
 import lotto.io.writer.Writer;
 
+import java.math.BigDecimal;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class OutputHandler {
 	
 	public void handleWinning(EnumMap<LottoPrize, Integer> lottoPrizes) {
 		String output = outputParser.parseWinning(lottoPrizes);
+		writer.write(output);
+	}
+	
+	public void handleStatics(int purchaseAmount, BigDecimal winningAmount) {
+		String output = outputParser.parseStatics(purchaseAmount, winningAmount);
 		writer.write(output);
 	}
 }
