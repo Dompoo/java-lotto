@@ -12,7 +12,7 @@ public class OutputParser {
 	
 	public String parseLottos(List<Lotto> lottos) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("%d개를 구매했습니다.\n".formatted(lottos.size()));
+		stringBuilder.append("\n%d개를 구매했습니다.\n".formatted(lottos.size()));
 		for (Lotto lotto : lottos) {
 			stringBuilder.append(lotto);
 			stringBuilder.append("\n");
@@ -22,7 +22,7 @@ public class OutputParser {
 	
 	public String parseWinning(EnumMap<LottoPrize, Integer> lottoPrizes) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("당첨 통계\n");
+		stringBuilder.append("\n당첨 통계\n");
 		stringBuilder.append("---\n");
 		lottoPrizes.forEach((lottoPrize, number) -> {
 			stringBuilder.append("%d개 일치".formatted(lottoPrize.numberMatch));
@@ -41,7 +41,7 @@ public class OutputParser {
 	
 	private String parseIncomeRate(int purchaseAmount, BigDecimal winningAmount) {
 		BigDecimal purchase = BigDecimal.valueOf(purchaseAmount);
-		BigDecimal result = winningAmount.divide(purchase, 2, RoundingMode.HALF_UP);
+		BigDecimal result = winningAmount.divide(purchase, 1, RoundingMode.HALF_UP);
 		return result.toString();
 	}
 }

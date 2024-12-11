@@ -27,14 +27,14 @@ public class InputHandler {
 	}
 	
 	public List<Integer> handleTargetNumbers() {
-		writer.write("당첨 번호를 입력해 주세요.\n");
+		writer.write("\n당첨 번호를 입력해 주세요.\n");
 		String input = reader.readLine();
 		inputValidator.validateTargetNumbers(input);
 		return inputParser.parseTargetNumbers(input);
 	}
 	
 	public int handleBonusNumber() {
-		writer.write("보너스 번호를 입력해 주세요.\n");
+		writer.write("\n보너스 번호를 입력해 주세요.\n");
 		String input = reader.readLine();
 		inputValidator.validateBonusNumber(input);
 		return inputParser.parseBonusNumber(input);
