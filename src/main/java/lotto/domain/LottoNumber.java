@@ -4,6 +4,7 @@ import lotto.common.exception.CustomExceptions;
 import lotto.service.numberPicker.NumberPicker;
 
 import java.util.List;
+import java.util.Objects;
 
 public class LottoNumber {
 	
@@ -28,5 +29,17 @@ public class LottoNumber {
 		return numbers.stream()
 				.map(LottoNumber::new)
 				.toList();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof LottoNumber that)) return false;
+		return number == that.number;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(number);
 	}
 }

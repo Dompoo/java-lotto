@@ -6,6 +6,14 @@ public enum CustomExceptions {
 			"로또 번호는 %d~%d 사이여야 합니다.",
 			IllegalArgumentException.class
 	),
+	INVALID_LOTTO_NUMBER_COUNT(
+			"로또 번호는 %d개여야 합니다.",
+			IllegalArgumentException.class
+	),
+	DUPLICATED_LOTTO_NUMBER(
+			"로또 번호는 중복될 수 없습니다.",
+			IllegalArgumentException.class
+	),
 	;
 	
 	private final String message;
