@@ -4,18 +4,20 @@ import java.util.Arrays;
 
 public enum LottoPrize {
 
-	당첨_1등(6, false),
-	당첨_2등(5, true),
-	당첨_3등(5, false),
-	당첨_4등(4, false),
-	당첨_5등(3, false),
-	낙첨(0, false),
+	당첨_1등(2_000_000_000, 6, false),
+	당첨_2등(30_000_000, 5, true),
+	당첨_3등(1_500_000, 5, false),
+	당첨_4등(50_000, 4, false),
+	당첨_5등(5_000, 3, false),
+	낙첨(0, 0, false),
 	;
 	
-	private final int numberMatch;
-	private final boolean bonusMatch;
+	public final int prizeMoney;
+	public final int numberMatch;
+	public final boolean bonusMatch;
 	
-	LottoPrize(int numberMatch, boolean bonusMatch) {
+	LottoPrize(int prizeMoney, int numberMatch, boolean bonusMatch) {
+		this.prizeMoney = prizeMoney;
 		this.numberMatch = numberMatch;
 		this.bonusMatch = bonusMatch;
 	}

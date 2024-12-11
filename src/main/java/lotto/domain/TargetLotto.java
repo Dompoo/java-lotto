@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,12 +20,14 @@ public class TargetLotto {
 		return new TargetLotto(Lotto.from(numbers), LottoNumber.from(bonusNumber));
 	}
 	
-	public List<LottoPrize> matchPrize(List<Lotto> lottos) {
-		List<LottoPrize> lottoPrizes = new ArrayList<>();
+	public EnumMap<LottoPrize, Integer> matchPrize(List<Lotto> lottos) {
+		EnumMap<LottoPrize, Integer> lottoPrizes = new EnumMap<>(LottoPrize.class);
 		for (Lotto lotto : lottos) {
-			int numberMatch = lotto.match(number);
-			boolean bonusMatch = lotto.match(bonusNumber);
-			lottoPrizes.add(LottoPrize.calculatePrize(numberMatch, bonusMatch));
+			LottoPrize lottoPrize = LottoPrize.calculatePrize(
+					lotto.match(number),
+					lotto.match(bonusNumber)
+			);
+			lottoPrizes.put(lottoPrize, lottoPrizes.getOrDefault(lottoPrize, 0) + 1);
 		}
 		return lottoPrizes;
 	}

@@ -1,8 +1,10 @@
 package lotto.io.output;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoPrize;
 import lotto.io.writer.Writer;
 
+import java.util.EnumMap;
 import java.util.List;
 
 public class OutputHandler {
@@ -17,6 +19,11 @@ public class OutputHandler {
 	
 	public void handleLottos(List<Lotto> lottos) {
 		String output = outputParser.parseLottos(lottos);
+		writer.write(output);
+	}
+	
+	public void handleWinning(EnumMap<LottoPrize, Integer> lottoPrizes) {
+		String output = outputParser.parseWinning(lottoPrizes);
 		writer.write(output);
 	}
 }
