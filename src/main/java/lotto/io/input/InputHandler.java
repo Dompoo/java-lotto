@@ -20,7 +20,7 @@ public class InputHandler {
 	}
 	
 	public int handlePurchaseMoney() {
-		writer.write("구입금액을 입력해 주세요.\n");
+		writer.write("\n구입금액을 입력해 주세요.\n");
 		String input = reader.readLine();
 		inputValidator.validatePurchaseMoney(input);
 		return inputParser.parsePurchaseMoney(input);

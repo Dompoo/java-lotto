@@ -25,14 +25,20 @@ public class OutputParser {
 		stringBuilder.append("\n당첨 통계\n");
 		stringBuilder.append("---\n");
 		lottoPrizes.forEach((lottoPrize, number) -> {
-			stringBuilder.append("%d개 일치".formatted(lottoPrize.numberMatch));
-			if (lottoPrize.bonusMatch) {
-				stringBuilder.append("보너스 볼 일치");
-			}
-			stringBuilder.append("(%,d원) - %d개".formatted(lottoPrize.prizeMoney, number));
-			stringBuilder.append("\n");
+			appendLottoPrize(lottoPrize, number, stringBuilder);
 		});
 		return stringBuilder.toString();
+	}
+	
+	private static void appendLottoPrize(LottoPrize lottoPrize, Integer number, StringBuilder stringBuilder) {
+		if (lottoPrize != LottoPrize.낙첨) {
+			stringBuilder.append("%d개 일치".formatted(lottoPrize.numberMatch));
+			if (lottoPrize.bonusMatch) {
+				stringBuilder.append(", 보너스 볼 일치");
+			}
+			stringBuilder.append(" (%,d원) - %d개".formatted(lottoPrize.prizeMoney, number));
+			stringBuilder.append("\n");
+		}
 	}
 	
 	public String parseStatics(int purchaseAmount, BigDecimal winningAmount) {
@@ -41,7 +47,8 @@ public class OutputParser {
 	
 	private String parseIncomeRate(int purchaseAmount, BigDecimal winningAmount) {
 		BigDecimal purchase = BigDecimal.valueOf(purchaseAmount);
-		BigDecimal result = winningAmount.divide(purchase, 1, RoundingMode.HALF_UP);
+		BigDecimal result = winningAmount.multiply(BigDecimal.valueOf(100))
+				.divide(purchase, 1, RoundingMode.HALF_UP);
 		return result.toString();
 	}
 }
