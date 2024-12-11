@@ -41,6 +41,10 @@ public class LottoNumber {
 				.toList();
 	}
 	
+	public String getStringValue() {
+		return String.valueOf(number);
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

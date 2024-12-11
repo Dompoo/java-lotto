@@ -6,6 +6,7 @@ import lotto.service.numberPicker.NumberPicker;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Lotto {
     
@@ -54,4 +55,13 @@ public class Lotto {
     public boolean match(LottoNumber bonusNumber) {
 		return numbers.contains(bonusNumber);
 	}
+    
+    @Override
+    public String toString() {
+        StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
+        numbers.stream()
+                .map(LottoNumber::getStringValue)
+                .forEach(stringJoiner::add);
+        return stringJoiner.toString();
+    }
 }
