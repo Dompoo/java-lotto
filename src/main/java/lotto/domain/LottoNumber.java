@@ -13,7 +13,7 @@ public class LottoNumber {
 	
 	private final int number;
 	
-	public LottoNumber(int number) {
+	private LottoNumber(int number) {
 		validate(number);
 		this.number = number;
 	}
@@ -26,6 +26,16 @@ public class LottoNumber {
 	
 	public static List<LottoNumber> createUnique(int count, NumberPicker numberPicker) {
 		List<Integer> numbers = numberPicker.pickNumberInRange(MIN_NUMBER, MAX_NUMBER, count);
+		return numbers.stream()
+				.map(LottoNumber::new)
+				.toList();
+	}
+	
+	public static LottoNumber from(int number) {
+		return new LottoNumber(number);
+	}
+	
+	public static List<LottoNumber> fromList(List<Integer> numbers) {
 		return numbers.stream()
 				.map(LottoNumber::new)
 				.toList();

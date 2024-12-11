@@ -27,6 +27,10 @@ public class Lotto {
             throw CustomExceptions.DUPLICATED_LOTTO_NUMBER.get();
         }
     }
+    
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(LottoNumber.fromList(numbers));
+    }
 
     public static List<Lotto> craete(int count, NumberPicker numberPicker) {
         List<Lotto> lottos = new ArrayList<>();
@@ -36,4 +40,18 @@ public class Lotto {
         }
         return lottos;
     }
+    
+    public int match(Lotto lotto) {
+        int count = 0;
+        for (LottoNumber number : lotto.numbers) {
+            if (numbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    public boolean match(LottoNumber bonusNumber) {
+		return numbers.contains(bonusNumber);
+	}
 }
