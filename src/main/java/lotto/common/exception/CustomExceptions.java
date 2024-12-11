@@ -14,6 +14,10 @@ public enum CustomExceptions {
 			"로또 번호는 중복될 수 없습니다.",
 			IllegalArgumentException.class
 	),
+	INVALID_MONEY_UNIT(
+			"금액은 %d원 단위여야 합니다.",
+			IllegalArgumentException.class
+	),
 	;
 	
 	private final String message;
